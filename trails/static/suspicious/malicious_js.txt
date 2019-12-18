@@ -890,3 +890,29 @@ live.sequracdn.net
 # Reference: https://twitter.com/JCyberSec_/status/1202903192192901120
 
 /js/AuthorizenetMagento.js
+
+# Reference: https://www.fortinet.com/blog/threat-research/inter-skimmer-for-all.html
+
+/vmartgo.js
+
+# Reference: https://twitter.com/xuy1202/status/1204778227517935616
+
+/2RuLm5ldHdvcmsx.js
+/9nRYFAGehAFJJ7u.js
+/klei53Wl6dT2bSF6S.js
+
+# Reference: https://twitter.com/ninoseki/status/1204971169658523649
+# Reference: https://www.virustotal.com/gui/ip-address/1.171.162.250/relations
+
+/user_info_uploader
+
+# Reference: https://twitter.com/JCyberSec_/status/1206919450802438144
+# Reference: https://twitter.com/JCyberSec_/status/1206919471597850624
+
+/5c117b7b019cb.js
+/5c12fffeea71e.js
+/5c21f3dbf01e0.js
+/5c3a398f10058.js
+/5c13086d94587.js
+/5d94c29e12536.js
+/5d2c953326774.js
