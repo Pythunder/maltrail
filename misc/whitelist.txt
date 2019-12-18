@@ -315,10 +315,6 @@ pinterest.com
 tinypic.com
 s3.amazonaws.com
 
-# appeared on malwaremustdie.org
-
-rea.co.ke
-
 # appeared on malwaredomains.com
 
 atw.hu
@@ -832,9 +828,6 @@ sophosxl.net
 # Generic
 
 bswireless.ddns.net
-diogen.duckdns.org
-mifux.duckdns.org
-psiloveyou.xyz
 elektrokem.dyndns.org
 animiranifilmovi.com
 bing.com
@@ -994,36 +987,6 @@ twilio.com
 wixapps.net
 necan.gov.np
 jsdelivr.com
-bitbucket.org
-github.com
-milftube.su
-gate.cc
-streamapi.xyz
-artplanet.su
-bishkek.su
-evolife.su
-gigalink.su
-viptelecom.su
-infoline.su
-infosys.su
-ipserver.su
-kgts.su
-krasnoyarsk.su
-masterbit.su
-nsk.su
-redhost.su
-soes.su
-spb.su
-strizhak.su
-persky.su
-tomsk.su
-transfer.su
-vernet.su
-viptelecom.su
-yaroslavl.su
-adult.xyz
-best-journal.xyz
-ytmp3.cc
 
 # NS of afraid.org
 
@@ -2533,15 +2496,3 @@ is.gd
 # Reference: https://twitter.com/JCyberSec_/status/1201850090153005056
 
 images-amazon.com
-
-# WPS Office
-
-ksosoft.com
-ksord.com
-dahuap2p.com
-wps.com
-wps.cn
-
-# Reference: https://www.virustotal.com/gui/domain/security-research.dyndns.org/relations
-
-security-research.dyndns.org
