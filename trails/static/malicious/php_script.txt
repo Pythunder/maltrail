@@ -938,10 +938,50 @@ zctrack.com
 
 /fcc-authenticazione.php
 
+# Reference: https://twitter.com/MalwarePatrol/status/1208404034346004487
+
+/t4t3bcw368wwno9zlciqr244.php
+
+# Reference: https://twitter.com/MalwarePatrol/status/1208977815481307137
+
+/1djx9hic7893s4ibzf3dtnjf.php
+
+# Reference: https://twitter.com/nao_sec/status/1209090544711815169
+
+/jppropellerads.php
+
+# Reference: https://twitter.com/MalwarePatrol/status/1209853585141501952
+
+/xbwzo420wz1r6frvy127b3zl.php
+
+# Reference: https://twitter.com/MalwarePatrol/status/1210215974600945667
+
+/sf2u6eovopsz6qqcv0unjld1.php
+
+# Reference: https://twitter.com/Vishnyak0v/status/1210528486512824321
+
+/f8h7ghd8gd8/index.php
+
+# Reference: https://twitter.com/MalwarePatrol/status/1210789744143060992
+
+/qtt30bxz0x2n86r2ivlcdqkt.php
+
+# Reference: https://twitter.com/MalwarePatrol/status/1211076635736379393
+
+/kz3zscegcucigqia01ifzale.php
+
+# Reference: https://twitter.com/MalwarePatrol/status/1211439022557605888
+
+/5iosdxlj7wlaqxi5fca2f3an.php
+
 # Generic
 
+/7328-dating-verification-card.php
 /canadiane-compte.php
+/dating-verification-card.php
 /gate.php
 /gate1.php
 /gate.get
+/online-dating-verification-card.php
 /screenshot_gate.php
+/verification-card.php

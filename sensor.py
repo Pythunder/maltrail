@@ -478,6 +478,9 @@ def _process_packet(packet, sec, usec, ip_offset):
                             return
 
                         if config.USE_HEURISTICS:
+                            match = re.search(r"\bX-Forwarded-For:\s*([0-9.]+)", packet, re.I)
+                            if match:
+                                src_ip = "%s,%s" % (src_ip, match.group(1))
                             unquoted_path = _urllib.parse.unquote(path)
                             unquoted_post_data = _urllib.parse.unquote(post_data or "")
                             for char in SUSPICIOUS_HTTP_REQUEST_FORCE_ENCODE_CHARS:
@@ -857,7 +860,7 @@ def init():
                 print("[?] in case of any problems with packet capture on virtual interface 'any', please put all monitoring interfaces to promiscuous mode manually (e.g. 'sudo ifconfig eth0 promisc')")
 
         for interface in interfaces:
-            if interface.lower() != "any" and interface not in pcapy.findalldevs():
+            if interface.lower() != "any" and re.sub(r"(?i)\Anetmap:", "", interface) not in pcapy.findalldevs():
                 hint = "[?] available interfaces: '%s'" % ",".join(pcapy.findalldevs())
                 exit("[!] interface '%s' not found\n%s" % (interface, hint))
 
@@ -986,17 +989,21 @@ def monitor():
                 sec, usec = [int(_) for _ in ("%.6f" % time.time()).split('.')]
             else:
                 sec, usec = header.getts()
+
             if _multiprocessing:
+                block = struct.pack("=III", sec, usec, ip_offset) + packet
+
                 if _locks.count:
                     _locks.count.acquire()
 
-                write_block(_buffer, _count, struct.pack("=III", sec, usec, ip_offset) + packet)
+                write_block(_buffer, _count, block)
                 _n.value = _count = _count + 1
 
                 if _locks.count:
                     _locks.count.release()
             else:
                 _process_packet(packet, sec, usec, ip_offset)
+
         except socket.timeout:
             pass
 
