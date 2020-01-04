@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2019 Maltrail developers (https://github.com/stamparm/maltrail/)
+# Copyright (c) 2014-2020 Maltrail developers (https://github.com/stamparm/maltrail/)
 # See the file 'LICENSE' for copying permission
 
 # Reference: https://www.virustotal.com/#/ip-address/85.17.26.65 (#URL section)
@@ -973,6 +973,10 @@ zctrack.com
 # Reference: https://twitter.com/MalwarePatrol/status/1211439022557605888
 
 /5iosdxlj7wlaqxi5fca2f3an.php
+
+# Reference: https://twitter.com/MalwarePatrol/status/1212465790873673728
+
+/vola4ob2hwwrak36r8ytzcf2.php
 
 # Generic
 
