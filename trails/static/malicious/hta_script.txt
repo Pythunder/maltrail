@@ -318,6 +318,24 @@
 
 /2206907.hta
 
+# Reference: https://twitter.com/wwp96/status/1214926249535164422
+
+/25067710.hta
+
+# Reference: https://mp.weixin.qq.com/s/L3dVwbkfTABtE4ZYtv5r4w
+# Reference: https://otx.alienvault.com/pulse/5e206d8b77de0b2690b9946c
+
+/zaqxswcde.hta
+/zaqxswcderfv.hta
+
+# Reference: https://otx.alienvault.com/pulse/5e257c8c189e48e8e053e75b
+
+/brzol0.hta
+/dbrcn0.hta
+/tyjui3.hta
+/zjirz.hta
+/zjirz0.hta
+
 # Generic
 
 /myrrem.hta

@@ -524,7 +524,6 @@ westflies.com/api/api.php
 
 # Reference: https://malwarebreakdown.com/2017/07/24/the-seamless-campaign-drops-ramnit-follow-up-malware-azorult-stealer-smoke-loader-etc/
 
-syndication.exdynsrv.com
 tqbeu.redirectvoluum.com
 tqbeu.voluumtrk.com
 
@@ -978,10 +977,15 @@ zctrack.com
 
 /7328-dating-verification-card.php
 /canadiane-compte.php
+/ccgate.php
 /dating-verification-card.php
+/evreigate.php
 /gate.php
 /gate1.php
+/gate2.php
 /gate.get
 /online-dating-verification-card.php
+/ravufgate.php
 /screenshot_gate.php
+/tgate.php
 /verification-card.php

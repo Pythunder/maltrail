@@ -178,6 +178,7 @@ takprosto.cc
 tawk.to
 testanalytics.net
 testflightapp.com
+torrent.eu.org
 trendmicro.com
 tumblr.com
 twitter.com
@@ -196,6 +197,7 @@ yahoo.com
 yahoodns.net
 yimg.com
 yvimg.kz
+zextras.com
 zillya.com
 zillya.ua
 zillyaoem.com
@@ -497,6 +499,7 @@ parkingcrew.net
 
 svijet7.com
 artbetting.de
+budi.in
 
 # found as false positive on abuse.ch
 
@@ -528,6 +531,7 @@ bit.nl
 blocklist.de
 blocklist.messaging.microsoft.com
 blogspambl.com
+brightmail.com
 burnt-tech.com
 choon.net
 cyberlogic.net
@@ -873,6 +877,7 @@ sophosxl.net
 # Generic
 
 bswireless.ddns.net
+boxcdn.net
 diogen.duckdns.org
 mifux.duckdns.org
 psiloveyou.xyz
@@ -1065,6 +1070,21 @@ yaroslavl.su
 adult.xyz
 best-journal.xyz
 ytmp3.cc
+balancers.42.wix.com
+ding.wix.com
+progallery.wix.com
+apps.wix.com
+ecom.wix.com
+social-blog.wix.com
+dc11.wix.com
+sslstatic.wix.com
+stores-counters.wix.com
+wwworigin.wix.com
+edu.cn
+edu.sg
+edu.ph
+ibb.co
+imgbb.com
 
 # NS of afraid.org
 
@@ -1146,6 +1166,9 @@ lupus-bra.com
 rotumal.com
 red-gate.com
 clicksor.com
+as2pawnib8ib.com
+srvng.xyz
+rbi.cloud
 
 # Google crawlers
 
@@ -2666,3 +2689,4 @@ yuio.top
 
 hf-hd.top
 nn-mod.top
+reseau-js.com

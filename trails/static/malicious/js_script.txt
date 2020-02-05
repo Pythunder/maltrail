@@ -752,10 +752,6 @@ zirve100.com
 
 /5j76hga6tnpo7levlgmhrosuhs.js
 
-# Reference: https://twitter.com/killamjr/status/1184849581529616390
-
-/js/varien/mail.js
-
 # Reference: https://twitter.com/killamjr/status/1185376383180136448
 
 /media/si.js
@@ -919,3 +915,62 @@ sgamno.com
 # Reference: https://twitter.com/tkanalyst/status/1210663918953123841
 
 /3pik20j30ri0f17q37u2s4mkms.js
+
+# Reference: https://twitter.com/c3rb3ru5d3d53c/status/1213878934514864128
+
+site-great.xyz
+
+# Reference: https://twitter.com/JayTHL/status/1214207517590511616
+# Reference: https://twitter.com/JayTHL/status/1214240539563966465
+
+static.srcspot.com
+/libs/carlos.js
+/libs/darrel.js
+/libs/galindo.js
+
+# Reference: https://twitter.com/aglongo/status/1214575812646752259
+
+/js/b76dadb06c3582b7f598111d60f2f944.js
+/js/ee497bb12cf272d333449cd79582c289.js
+/js/34dbc8a61ab0c8e3f7fc444d83b8a3d4.js
+
+# Reference: https://twitter.com/ScumBots/status/1218627885579362304
+# Reference: https://twitter.com/pmelson/status/1218655235205451777
+
+149.248.1.128:443
+149.248.1.128:80
+
+# Reference: https://twitter.com/unmaskparasites/status/1219611201891708928
+
+admarketresearch.xyz
+adsformarket.com
+
+# Reference: https://twitter.com/matr0cks/status/1220418827751763969
+
+/jqueryprivatesecurity.js
+/onloadsecurityvalidate.js
+
+# Reference: https://www.virustotal.com/gui/domain/js.users.51.la/relations
+
+js.users.51.la
+
+# Reference: https://twitter.com/unmaskparasites/status/1206662128213594117
+
+whoisloookup.com
+
+# Reference: https://twitter.com/benkow_/status/1222457832810991616
+# Reference: https://www.virustotal.com/gui/domain/bamblbee.store/relations
+
+bamblbee.store
+
+# Reference: https://twitter.com/pjcampbe11/status/1222556092242317315
+# Reference: https://www.helpnetsecurity.com/2019/09/24/cve-2019-1367/
+# Reference: https://otx.alienvault.com/pulse/5e32f827509fbbbeb2d3ee2a
+
+202.122.128.28:80
+largeurlcache.com
+
+# Reference: https://twitter.com/david_jursa/status/1223740643912093696
+
+/fc1i4iicca17n7p0h8mrsb0jfs.js
+/lhglbfj4if5d1hisd2iuha1670.js

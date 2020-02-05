@@ -13,6 +13,7 @@ sys.dont_write_bytecode = True
 
 import core.versioncheck
 
+import cProfile
 import inspect
 import math
 import mmap
@@ -37,7 +38,9 @@ from core.common import get_ex_message
 from core.common import get_text
 from core.common import load_trails
 from core.compat import xrange
+from core.datatype import LRUDict
 from core.enums import BLOCK_MARKER
+from core.enums import CACHE_TYPE
 from core.enums import PROTO
 from core.enums import TRAIL
 from core.log import create_log_directory
@@ -104,7 +107,7 @@ _count = 0
 _locks = AttribDict()
 _multiprocessing = None
 _n = None
-_result_cache = {}
+_result_cache = LRUDict(MAX_RESULT_CACHE_ENTRIES)
 _last_syn = None
 _last_logged_syn = None
 _last_udp = None
@@ -143,7 +146,13 @@ def _check_domain_member(query, domains):
     return False
 
 def _check_domain_whitelisted(query):
-    return _check_domain_member(re.split(r"(?i)[^A-Z0-9._-]", query or "")[0], WHITELIST)
+    result = _result_cache.get((CACHE_TYPE.DOMAIN_WHITELISTED, query))
+
+    if result is None:
+        result = _check_domain_member(re.split(r"(?i)[^A-Z0-9._-]", query or "")[0], WHITELIST)
+        _result_cache[(CACHE_TYPE.DOMAIN_WHITELISTED, query)] = result
+
+    return result
 
 def _check_domain(query, sec, usec, src_ip, src_port, dst_ip, dst_port, proto, packet=None):
     if query:
@@ -154,7 +163,7 @@ def _check_domain(query, sec, usec, src_ip, src_port, dst_ip, dst_port, proto, p
     if query.replace('.', "").isdigit():  # IP address
         return
 
-    if _result_cache.get(query) == False:
+    if _result_cache.get((CACHE_TYPE.DOMAIN, query)) == False:
         return
 
     result = False
@@ -220,7 +229,7 @@ def _check_domain(query, sec, usec, src_ip, src_port, dst_ip, dst_port, proto, p
                     log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, proto, TRAIL.DNS, trail, "long domain (suspicious)", "(heuristic)"), packet)
 
     if result == False:
-        _result_cache[query] = False
+        _result_cache[(CACHE_TYPE.DOMAIN, query)] = False
 
 def _process_packet(packet, sec, usec, ip_offset):
     """
@@ -236,9 +245,6 @@ def _process_packet(packet, sec, usec, ip_offset):
     global _subdomains_sec
 
     try:
-        if len(_result_cache) > MAX_RESULT_CACHE_ENTRIES:
-            _result_cache.clear()
-
         if config.USE_HEURISTICS:
             if _locks.connect_sec:
                 _locks.connect_sec.acquire()
@@ -266,10 +272,10 @@ def _process_packet(packet, sec, usec, ip_offset):
 
         if ip_version == 0x04:  # IPv4
             ip_header = struct.unpack("!BBHHHBBH4s4s", ip_data[:20])
-            iph_length = (ip_header[0] & 0xf) << 2
             fragment_offset = ip_header[4] & 0x1fff
             if fragment_offset != 0:
                 return
+            iph_length = (ip_header[0] & 0xf) << 2
             protocol = ip_header[6]
             src_ip = socket.inet_ntoa(ip_header[8])
             dst_ip = socket.inet_ntoa(ip_header[9])
@@ -352,11 +358,13 @@ def _process_packet(packet, sec, usec, ip_offset):
                         log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.TCP, TRAIL.HTTP, content_type, "content type (suspicious)", "(heuristic)"), packet)
 
                 method, path = None, None
-                index = tcp_data.find("\r\n")
-                if index >= 0:
-                    line = tcp_data[:index]
-                    if line.count(' ') == 2 and " HTTP/" in line:
-                        method, path, _ = line.split(' ')
+
+                if " HTTP/" in tcp_data:
+                    index = tcp_data.find("\r\n")
+                    if index >= 0:
+                        line = tcp_data[:index]
+                        if line.count(' ') == 2 and " HTTP/" in line:
+                            method, path, _ = line.split(' ')
 
                 if method and path:
                     post_data = None
@@ -426,7 +434,7 @@ def _process_packet(packet, sec, usec, ip_offset):
                                 user_agent = _urllib.parse.unquote(user_agent).strip()
 
                         if user_agent:
-                            result = _result_cache.get(user_agent)
+                            result = _result_cache.get((CACHE_TYPE.USER_AGENT, user_agent))
                             if result is None:
                                 if re.search(WHITELIST_UA_REGEX, user_agent, re.I) is None:
                                     match = re.search(SUSPICIOUS_UA_REGEX, user_agent)
@@ -437,11 +445,11 @@ def _process_packet(packet, sec, usec, ip_offset):
                                         parts = user_agent.split(match.group(0), 1)
 
                                         if len(parts) > 1 and parts[0] and parts[-1]:
-                                            result = _result_cache[user_agent] = "%s (%s)" % (_(match.group(0)), _(user_agent))
+                                            result = _result_cache[(CACHE_TYPE.USER_AGENT, user_agent)] = "%s (%s)" % (_(match.group(0)), _(user_agent))
                                         else:
-                                            result = _result_cache[user_agent] = _(match.group(0)).join(("(%s)" if part else "%s") % _(part) for part in parts)
+                                            result = _result_cache[(CACHE_TYPE.USER_AGENT, user_agent)] = _(match.group(0)).join(("(%s)" if part else "%s") % _(part) for part in parts)
                                 if not result:
-                                    _result_cache[user_agent] = False
+                                    _result_cache[(CACHE_TYPE.USER_AGENT, user_agent)] = False
 
                             if result:
                                 log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.TCP, TRAIL.UA, result, "user agent (suspicious)", "(heuristic)"), packet)
@@ -491,26 +499,26 @@ def _process_packet(packet, sec, usec, ip_offset):
 
                             if not any(_ in unquoted_path.lower() for _ in WHITELIST_HTTP_REQUEST_PATHS):
                                 if any(_ in unquoted_path for _ in SUSPICIOUS_HTTP_REQUEST_PRE_CONDITION):
-                                    found = _result_cache.get(unquoted_path)
+                                    found = _result_cache.get((CACHE_TYPE.PATH, unquoted_path))
                                     if found is None:
                                         for desc, regex in SUSPICIOUS_HTTP_REQUEST_REGEXES:
                                             if re.search(regex, unquoted_path, re.I | re.DOTALL):
                                                 found = desc
                                                 break
-                                        _result_cache[unquoted_path] = found or ""
+                                        _result_cache[(CACHE_TYPE.PATH, unquoted_path)] = found or ""
                                     if found:
                                         trail = "%s(%s)" % (host, path)
                                         log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.TCP, TRAIL.URL, trail, "%s (suspicious)" % found, "(heuristic)"), packet)
                                         return
 
                                 if any(_ in unquoted_post_data for _ in SUSPICIOUS_HTTP_REQUEST_PRE_CONDITION):
-                                    found = _result_cache.get(unquoted_post_data)
+                                    found = _result_cache.get((CACHE_TYPE.POST_DATA, unquoted_post_data))
                                     if found is None:
                                         for desc, regex in SUSPICIOUS_HTTP_REQUEST_REGEXES:
                                             if re.search(regex, unquoted_post_data, re.I | re.DOTALL):
                                                 found = desc
                                                 break
-                                        _result_cache[unquoted_post_data] = found or ""
+                                        _result_cache[(CACHE_TYPE.POST_DATA, unquoted_post_data)] = found or ""
                                     if found:
                                         trail = "%s(%s \\(%s %s\\))" % (host, path, method, post_data.strip())
                                         log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.TCP, TRAIL.HTTP, trail, "%s (suspicious)" % found, "(heuristic)"), packet)
@@ -736,7 +744,7 @@ def init():
     try:
         import multiprocessing
 
-        if config.PROCESS_COUNT > 1:
+        if config.PROCESS_COUNT > 1 and not config.profile:
             _multiprocessing = multiprocessing
     except (ImportError, OSError, NotImplementedError):
         pass
@@ -1036,16 +1044,20 @@ def monitor():
                     if not success:
                         time.sleep(REGULAR_SENSOR_SLEEP_TIME)
 
-        if len(_caps) > 1:
-            if _multiprocessing:
-                _locks.count = threading.Lock()
-            _locks.connect_sec = threading.Lock()
+        if config.profile and len(_caps) == 1:
+            print("[=] will store profiling results to '%s'..." % config.profile)
+            _(_caps[0])
+        else:
+            if len(_caps) > 1:
+                if _multiprocessing:
+                    _locks.count = threading.Lock()
+                _locks.connect_sec = threading.Lock()
 
-        for _cap in _caps:
-            threading.Thread(target=_, args=(_cap,)).start()
+            for _cap in _caps:
+                threading.Thread(target=_, args=(_cap,)).start()
 
-        while _caps and not _done_count == (config.pcap_file or "").count(',') + 1:
-            time.sleep(1)
+            while _caps and not _done_count == (config.pcap_file or "").count(',') + 1:
+                time.sleep(1)
 
         print("[i] all capturing interfaces closed")
     except SystemError as ex:
@@ -1090,6 +1102,7 @@ def main():
     parser.add_option("--console", dest="console", action="store_true", help="print events to console (Note: switch '-q' might be useful)")
     parser.add_option("--no-updates", dest="no_updates", action="store_true", help="disable (online) trail updates")
     parser.add_option("--debug", dest="debug", action="store_true", help=optparse.SUPPRESS_HELP)
+    parser.add_option("--profile", dest="profile", help=optparse.SUPPRESS_HELP)
     options, _ = parser.parse_args()
 
     read_config(options.config_file)
@@ -1118,7 +1131,11 @@ def main():
 
     try:
         init()
-        monitor()
+        if config.profile:
+            open(config.profile, "w+b").write("")
+            cProfile.run("monitor()", config.profile)
+        else:
+            monitor()
     except KeyboardInterrupt:
         print("\r[x] stopping (Ctrl-C pressed)")
 

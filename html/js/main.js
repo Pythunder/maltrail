@@ -124,6 +124,7 @@ $(document).ready(function() {
     initCalHeatmap();
     initDialogs();
 
+    Papa.SCRIPT_PATH = "/js/papaparse.min.js"
     Papa.RemoteChunkSize = CHUNK_SIZE; // 10 MB (per one chunk request)
 
     Chart.defaults.global.tooltipFontFamily = DEFAULT_FONT_FAMILY;
@@ -2847,6 +2848,17 @@ function dayEnd(tick_seconds) {
 
     return Math.floor(value.getTime());
 }
+
+$(document).keyup(function(e){
+    var key = e.which || e.keyCode;
+
+    if (key === 37) {        // left
+        $("#details_previous").click();
+    }
+    else if (key === 39) {    // right
+        $("#details_next").click();
+    }
+});
 
 $(document).ready(function() {
     var from = dayStart(new Date().getTime());

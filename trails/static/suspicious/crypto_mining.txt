@@ -265,3 +265,60 @@ minemonero.gq
 alimabi.cn
 pooldd.com
 monero.riefly.id
+
+# Reference: https://blog.talosintelligence.com/2020/01/vivin-cryptomining-campaigns.html
+# Reference: https://otx.alienvault.com/pulse/5e29b7189d749995b2d4ea71
+# Reference: https://www.virustotal.com/gui/file/6bc118693d6e69081e5f39fdab20a613d7536d3199c029562c192c5dbc9d1d1c/detection
+
+37.59.43.136:4444
+37.59.54.205:4444
+
+# Reference: https://app.any.run/tasks/d6c87295-24a2-48eb-aef0-d3d5ac4ad2ae/
+# Reference: https://mining.bittube.app/
+
+mining.bittubeapp.com
+
+# Reference: https://www.virustotal.com/gui/file/5eda21ea41febbdc5b69840894cb37cba8206f2865dc07e2cb85c29db5240d04/detection
+# Reference: https://www.virustotal.com/gui/ip-address/163.172.204.213/relations
+# Reference: https://www.virustotal.com/gui/ip-address/163.172.204.219/relations
+
+163.172.204.213:3333
+163.172.204.219:3333
+163.172.207.198:3333
+163.172.207.71:3333
+crypto-pool.info
+monero-master.crypto-pool.fr
+pool.4i7i.com
+xmr.ip28.net
+xmr.simka.pw
+xmrpool.me
+xmr.crypto-pool.info
+xmrf.520fjh.org
+xmrf.fjhan.club
+xmr.somec.cc
+pool.somec.cc
+
+# Reference: https://www.first.org/resources/papers/amsterdam2019/FIRST-TC-pres-v1.1.pdf    # Note: page 31
+# Reference: https://www.virustotal.com/gui/ip-address/163.172.226.194/relations
+# Reference: https://www.virustotal.com/gui/domain/xmr.crypto-pool.fr/relations
+# Reference: https://www.virustotal.com/gui/file/87f9a5a38c1dce92317c50fe66f2fdc0fcfac19f0ea58951b9a3e747915c1827/behavior/Rising%20MOVES  # Note: different ports used
+
+163.172.114.218
+163.172.203.178
+163.172.204.213
+163.172.204.219
+163.172.205.136
+163.172.206.67
+163.172.207.166
+163.172.207.198
+163.172.207.69
+163.172.207.71
+163.172.207.88
+163.172.224.101
+163.172.226.114
+163.172.226.120
+163.172.226.128
+163.172.226.137
+163.172.226.194
+163.172.226.201
+163.172.226.218
