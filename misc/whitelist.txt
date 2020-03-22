@@ -472,6 +472,8 @@ nk-slaven-belupo.hr
 fongyeh.com.tw
 ee.ncu.edu.tw
 hupt.hr
+heartjohn.com
+cima.hr
 
 # found as false positive on cybercrime-tracker.net
 
@@ -1085,6 +1087,8 @@ edu.sg
 edu.ph
 ibb.co
 imgbb.com
+uvnc.com
+glotorrents.pw
 
 # NS of afraid.org
 
@@ -2690,3 +2694,8 @@ yuio.top
 hf-hd.top
 nn-mod.top
 reseau-js.com
+
+# Exceptions for abuse.ch (dirty patch for addresses used by outside scanners introducing noise being recognized as 'malware')
+
+scan.casualaffinity.net
+jhasdjahsdjasfkdaskdfasbot.niggacumyafacenet.xyz
