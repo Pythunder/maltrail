@@ -2490,10 +2490,6 @@ i234.me
 
 myds.me
 
-# Reference: https://www.virustotal.com/gui/domain/synology.me/relations
-
-synology.me
-
 # Reference: https://www.virustotal.com/gui/domain/vpnplus.to/relations
 
 vpnplus.to
@@ -2521,10 +2517,6 @@ diskstation.eu
 # Reference: https://www.virustotal.com/gui/domain/diskstation.org/relations
 
 diskstation.org
-
-# Reference: https://www.virustotal.com/gui/domain/quickconnect.to/relations
-
-quickconnect.to
 
 # Reference: https://dyndnss.net/eng/
 
@@ -3004,3 +2996,24 @@ dnsfor.me
 # Reference: https://www.virustotal.com/gui/domain/jflddns.com.br/relations
 
 jflddns.com.br
+
+# Reference: https://easydns.com/dns/dyndns/
+# Reference: https://www.virustotal.com/gui/domain/easydns.com/relations
+# Reference: https://www.virustotal.com/gui/domain/easydns.net/relations
+# Reference: https://www.virustotal.com/gui/domain/easydns.org/relations
+# Reference: https://www.virustotal.com/gui/domain/eluma101.com/relations
+
+easydns.com
+easydns.net
+easydns.org
+eluma101.com
+
+# Reference: https://www.virustotal.com/gui/domain/ddns.ne/relations
+
+ddns.ne
+
+# Reference: https://entrydns.net/
+# Reference: https://www.virustotal.com/gui/domain/entrydns.org/relations
+
+entrydns.net
+entrydns.org

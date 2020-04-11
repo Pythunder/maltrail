@@ -950,10 +950,6 @@ adsformarket.com
 /jqueryprivatesecurity.js
 /onloadsecurityvalidate.js
 
-# Reference: https://www.virustotal.com/gui/domain/js.users.51.la/relations
-
-js.users.51.la
-
 # Reference: https://twitter.com/unmaskparasites/status/1206662128213594117
 
 whoisloookup.com
@@ -974,3 +970,27 @@ largeurlcache.com
 
 /fc1i4iicca17n7p0h8mrsb0jfs.js
 /lhglbfj4if5d1hisd2iuha1670.js
+
+# Reference: https://twitter.com/FaLconIntel/status/1229004752312078336
+
+/veugi45pre97c4koiurgjg0ar0.js
+
+# Reference: https://www.flashpoint-intel.com/blog/newly-discovered-malware-framework-cashing-in-on-ad-fraud/
+
+coolbrowsering.xyz
+alfapromo.info
+archivepoisk-zone.info
+onlinemobsoft.ru
+anyaaplanet.info
+decentsite.xyz
+archivepoisk.info
+sympleplace.info
+adsmeneger.club
+
+# Reference: https://twitter.com/felixaime/status/1236196571928236037
+
+scriptcdn.info
+
+# Reference: https://twitter.com/unmaskparasites/status/1235190676838633477
+
+collectfasttracks.com

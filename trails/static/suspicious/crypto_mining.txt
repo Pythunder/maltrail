@@ -320,5 +320,54 @@ pool.somec.cc
 163.172.226.128
 163.172.226.137
 163.172.226.194
-163.172.226.201
 163.172.226.218
+
+# Reference: https://www.virustotal.com/gui/file/fbcdd5c542bb5c66303e621829f0cd654be0bfb38ed0c50a335ef3c9dae0201f/detection
+
+138.201.20.89:45700
+138.201.27.243:45700
+78.46.87.181:45700
+88.99.142.163:45700
+
+# Reference: https://www.virustotal.com/gui/file/c3affb76ff0fad78d77b0153b5c2a99d5bbd8d829ef13661c0af58d2988db344/detection
+
+149.210.234.234:3333
+litecoinpool.org
+
+# Reference: https://twitter.com/c3rb3ru5d3d53c/status/1240732487195688962
+
+covid19crypto.com
+
+# Reference: https://blog.360totalsecurity.com/en/crazycoin-the-master-of-double-mining-double-white-utilization-and-resource-utilization/
+
+47.101.30.124:13531
+47.108.119.77:6000
+f2pool.com
+hns.f2pool.com
+xmr.f2pool.com
+
+# Reference: https://github.com/Monero-Monitor/monero-monitor/blob/master/data/html/options.html
+
+monero.crypto-pool.fr
+monerohash.com
+moneropool.com
+drill.moneroworld.com
+cryptmonero.com
+xmr.prohash.net
+xmr.alimabi.cn
+xmrpool.eu
+supportxmr.com
+minexmr.com
+
+# Reference: https://www.virustotal.com/gui/file/eaef82223eeb8cf404a1d46613d36b9e582304b215201b5e557db578dd73e04e/behavior/Dr.Web%20vxCube
+
+37.59.43.131:5555
+37.59.43.136:5555
+91.121.2.76:5555
+37.59.45.174:5555
+176.9.2.144:5555
+78.46.91.134:5555
+78.46.89.102:5555
+37.187.154.79:5555
+37.59.54.205:5555
+37.59.55.60:5555

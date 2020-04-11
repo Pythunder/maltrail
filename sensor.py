@@ -11,8 +11,6 @@ import sys
 
 sys.dont_write_bytecode = True
 
-import core.versioncheck
-
 import cProfile
 import inspect
 import math
@@ -24,7 +22,6 @@ import re
 import socket
 import subprocess
 import struct
-import sys
 import threading
 import time
 import traceback
@@ -36,6 +33,7 @@ from core.common import check_sudo
 from core.common import check_whitelisted
 from core.common import get_ex_message
 from core.common import get_text
+from core.common import is_local
 from core.common import load_trails
 from core.compat import xrange
 from core.datatype import LRUDict
@@ -125,13 +123,7 @@ except ImportError:
     if IS_WIN:
         exit("[!] please install 'WinPcap' (e.g. 'http://www.winpcap.org/install/') and Pcapy (e.g. 'https://breakingcode.wordpress.com/?s=pcapy')")
     else:
-        msg = "[!] please install 'Pcapy'"
-
-        for distros, install in {("fedora", "centos"): "sudo yum install pcapy", ("debian", "ubuntu"): "sudo apt-get install python-pcapy"}.items():
-            for distro in distros:
-                if distro in (platform.uname()[3] or "").lower():
-                    msg += " (e.g. '%s')" % install
-                    break
+        msg = "[!] please install 'Pcapy' (e.g. 'sudo pip%s install pcapy')" % ('3' if six.PY3 else '2')
 
         exit(msg)
 
@@ -650,7 +642,7 @@ def _process_packet(packet, sec, usec, ip_offset):
                                         _ = dns_data[_ + 12:_ + 16]
                                         if _:
                                             answer = socket.inet_ntoa(_)
-                                            if answer in trails:
+                                            if answer in trails and not _check_domain_whitelisted(query):
                                                 _ = trails[answer]
                                                 if "sinkhole" in _[0]:
                                                     trail = "(%s).%s" % ('.'.join(parts[:-1]), '.'.join(parts[-1:]))
@@ -667,30 +659,31 @@ def _process_packet(packet, sec, usec, ip_offset):
                                             return
 
                                         if not (len(parts) > 4 and all(_.isdigit() and int(_) < 256 for _ in parts[:4])):  # generic check for DNSBL IP lookups
-                                            for _ in filter(None, (query, "*.%s" % '.'.join(parts[-2:]) if query.count('.') > 1 else None)):
-                                                if _ not in NO_SUCH_NAME_COUNTERS or NO_SUCH_NAME_COUNTERS[_][0] != sec // 3600:
-                                                    NO_SUCH_NAME_COUNTERS[_] = [sec // 3600, 1, set()]
-                                                else:
-                                                    NO_SUCH_NAME_COUNTERS[_][1] += 1
-                                                    NO_SUCH_NAME_COUNTERS[_][2].add(query)
+                                            if not is_local(dst_ip):  # prevent FPs caused by local queries
+                                                for _ in filter(None, (query, "*.%s" % '.'.join(parts[-2:]) if query.count('.') > 1 else None)):
+                                                    if _ not in NO_SUCH_NAME_COUNTERS or NO_SUCH_NAME_COUNTERS[_][0] != sec // 3600:
+                                                        NO_SUCH_NAME_COUNTERS[_] = [sec // 3600, 1, set()]
+                                                    else:
+                                                        NO_SUCH_NAME_COUNTERS[_][1] += 1
+                                                        NO_SUCH_NAME_COUNTERS[_][2].add(query)
 
-                                                    if NO_SUCH_NAME_COUNTERS[_][1] > NO_SUCH_NAME_PER_HOUR_THRESHOLD:
-                                                        if _.startswith("*."):
-                                                            log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.UDP, TRAIL.DNS, "%s%s" % ("(%s)" % ','.join(item.replace(_[1:], "") for item in NO_SUCH_NAME_COUNTERS[_][2]), _[1:]), "excessive no such domain (suspicious)", "(heuristic)"), packet)
-                                                            for item in NO_SUCH_NAME_COUNTERS[_][2]:
-                                                                try:
-                                                                    del NO_SUCH_NAME_COUNTERS[item]
-                                                                except KeyError:
-                                                                    pass
-                                                        else:
-                                                            log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.UDP, TRAIL.DNS, _, "excessive no such domain (suspicious)", "(heuristic)"), packet)
+                                                        if NO_SUCH_NAME_COUNTERS[_][1] > NO_SUCH_NAME_PER_HOUR_THRESHOLD:
+                                                            if _.startswith("*."):
+                                                                log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.UDP, TRAIL.DNS, "%s%s" % ("(%s)" % ','.join(item.replace(_[1:], "") for item in NO_SUCH_NAME_COUNTERS[_][2]), _[1:]), "excessive no such domain (suspicious)", "(heuristic)"), packet)
+                                                                for item in NO_SUCH_NAME_COUNTERS[_][2]:
+                                                                    try:
+                                                                        del NO_SUCH_NAME_COUNTERS[item]
+                                                                    except KeyError:
+                                                                        pass
+                                                            else:
+                                                                log_event((sec, usec, src_ip, src_port, dst_ip, dst_port, PROTO.UDP, TRAIL.DNS, _, "excessive no such domain (suspicious)", "(heuristic)"), packet)
 
-                                                        try:
-                                                            del NO_SUCH_NAME_COUNTERS[_]
-                                                        except KeyError:
-                                                            pass
+                                                            try:
+                                                                del NO_SUCH_NAME_COUNTERS[_]
+                                                            except KeyError:
+                                                                pass
 
-                                                        break
+                                                            break
 
                                             if len(parts) == 2 and parts[0] and '-' not in parts[0]:
                                                 part = parts[0]

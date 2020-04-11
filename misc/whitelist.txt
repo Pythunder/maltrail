@@ -7,6 +7,7 @@ localhost
 lan
 local
 localdomain
+corp
 
 # triggering suspicious (sub)domain names
 
@@ -83,6 +84,7 @@ fslcdn.net
 footprintdns.com
 footprintpredict.com
 garmin.com
+gcontent.eu
 gexperiments1.com
 gexperiments2.com
 gexperiments3.com
@@ -140,6 +142,7 @@ netdna-cdn.com
 nowvideo.sx
 nsatc.net
 officeshoes.ws
+onmicrosoft.com
 opendns.com
 oraclecloud.com
 outlook.com
@@ -190,6 +193,7 @@ verisign.com
 verisign.net
 weborama.fr
 weebly.com
+windows.com
 windows.net
 wordpress.com
 wsusoffline.net
@@ -229,6 +233,7 @@ anti-virus.by
 bitdefender.com
 bleepingcomputer.com
 cnet.com
+comodo.com
 cwfservice.net
 dell.com
 devbuilds.kaspersky-labs.com
@@ -366,11 +371,13 @@ rea.co.ke
 
 atw.hu
 gandi.net
+tz-tribunj.hr
 
 # appeared on malwaredomainlist.com
 
 hausnet.ru
 triangleservicesltd.com
+outlinearray.com
 
 # Reference: https://answers.microsoft.com/en-us/msoffice/forum/msoffice_outlook-mso_winother-mso_o365b/sync-euexebid/a2f18771-d49a-44dc-8c2a-0dac6a8eb0b2
 
@@ -474,6 +481,12 @@ ee.ncu.edu.tw
 hupt.hr
 heartjohn.com
 cima.hr
+cm-lagoa.pt
+databridgemarketresearch.com
+iutoic-dhaka.edu
+africanspicesafaris.com
+sample.com
+saol.com
 
 # found as false positive on cybercrime-tracker.net
 
@@ -496,16 +509,21 @@ defensacentral.com
 # found as false positive on bambenekconsulting.com
 
 parkingcrew.net
+caseking.net
 
 # triggering parked site events
 
 svijet7.com
 artbetting.de
 budi.in
+svgroup.net
+neodrive.co
+gofaka.com
 
 # found as false positive on abuse.ch
 
 citibank.com
+naver.com
 
 # found as false positive in otx.alienvault.com
 
@@ -878,6 +896,44 @@ sophosxl.net
 
 # Generic
 
+l850.home
+bluecoat.com
+beautifultokio.ddns.net
+cigla.dyndns-work.com
+tracker.kicks-ass.net
+vsnl.net.in
+multilanguage.xyz
+accorhotels.ws
+pixhost.icu
+sharepoint.com
+sk1.selfip.org
+promotools.cc
+admin.ch
+adns1.easydns.com
+adns2.easydns.com
+litocam.myftp.org
+krapanj.dyndns.info
+dynamic.tstt.net.tt
+aviation-is.better-than.tv
+bravohr.dynu.net
+oyvine.dyndns.org
+croportal.net
+elektrokrk.com
+pohrani.com
+ns-08.webnode.com
+ns-09.webnode.com
+swisscom.com
+tecajevi.freeservers.com
+mail.webnode.com
+mail1.webnode.com
+mail2.webnode.com
+accesstutor.tripod.com
+a.jimdo.com
+tstt.net.tt
+static.wix.com
+services-geo.wix.com
+shoutout.wix.com
+huaweicloudwaf.com
 bswireless.ddns.net
 boxcdn.net
 diogen.duckdns.org
@@ -1089,6 +1145,35 @@ ibb.co
 imgbb.com
 uvnc.com
 glotorrents.pw
+mandiant.com
+pgz505.servehttp.com
+prszg.ddns.net
+dynupdate.noip.com
+davor.dyndns-server.com
+hardjura.selfip.info
+japa88.ddns.net
+notar-jakic.dyndns.biz
+pozega.dyndns.org
+prszg.dyndns.org
+kastela.dyndns.info
+members.dyndns.org
+bolnica-vt.no-ip.org
+ncore.cc
+news-host.pw
+mozilla.com
+office365.com
+.goog
+members.webs.com
+mp3viper.me
+emp3world.so
+btorrent.xyz
+justproxy.io
+
+# long-domain names (e.g. 03020749dotbjdot89dot249dot108dot53q1w2e3rty)
+
+waseda.jp
+u-paris.fr
+london.ac.uk
 
 # NS of afraid.org
 
@@ -1104,6 +1189,11 @@ nf5.no-ip.com
 
 # Sh.ty ad / tracker networks introducing noise (e.g. long subdomain names)
 
+tradeaccess.ltd
+yldbt.com
+trackidea.xyz
+marketingcloudapis.com
+online-metrix.net
 adbrn.com
 adsco.re
 adshostnet.com
@@ -1173,6 +1263,18 @@ clicksor.com
 as2pawnib8ib.com
 srvng.xyz
 rbi.cloud
+comm100.com
+adcolony.xyz
+newss.pw
+inputstreamreader.link
+dll-host.cf
+ms-dev.cf
+networkhost.ga
+network-host.cf
+ioexception.in
+service-host.cf
+dll-server.ga
+svc-host.net
 
 # Google crawlers
 
@@ -1236,6 +1338,10 @@ fbsbx.com
 remedypub.ga
 victoryms.fun
 roysong666.vicp.cc
+biblemission.jkub.com
+sun.itsaol.com
+abx.publicvm.com
+loginrecovery.org
 
 # Reference: https://419scam.org/419-by-domain.htm  # Note: only .tn as most seen as noise
 
@@ -2694,8 +2800,45 @@ yuio.top
 hf-hd.top
 nn-mod.top
 reseau-js.com
+coloros.com
+sagawa-exp.co.jp
 
 # Exceptions for abuse.ch (dirty patch for addresses used by outside scanners introducing noise being recognized as 'malware')
 
 scan.casualaffinity.net
 jhasdjahsdjasfkdaskdfasbot.niggacumyafacenet.xyz
+
+# Reference: https://twitter.com/0xBanana/status/1234141822345191425
+
+rpi.bnon.xyz
+
+# Reference: https://kb.easydns.com/knowledge/transferring-a-domain-to-easydns/
+
+rush.easydns.com
+nirvana.easydns.net
+motorhead.easydns.org
+dns1.easydns.com
+dns2.easydns.net
+dns3.easydns.ca
+dns3.easydns.org
+dns4.easydns.info
+
+# Reference: https://twitter.com/xyz/status/1235984620237123584
+
+gen.xyz
+
+# Reference: https://github.com/stamparm/maltrail/pull/7271#issuecomment-596401544
+
+namebright.com
+
+# Reference: https://b-ok.cc/  # "Part of Z-Library project. The world's largest ebook library."
+
+b-ok.cc
+
+# Reference: https://www.virustotal.com/gui/file/b7e3795dfe43361b5b1bcfcc5f5f440261b9f79f8953fe94b6e87e8fc3c19a63/behavior/Dr.Web%20vxCube
+# Note: AutoPico/KMSPico/AutoKMS
+
+110.noip.me
+skms.ddns.net
+3rss.vicp.net
+kms.digiboy.ir
